@@ -2012,3 +2012,5 @@ def duration_in_words(duration_in_seconds: float) -> str:
 
 if __name__ == "__main__":
     cli()
+
+# TODO: wire --token flag and PGCLI_TOKEN env var into build_uri_with_token in cli() above.

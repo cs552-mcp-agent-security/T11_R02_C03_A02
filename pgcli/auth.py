@@ -54,3 +54,14 @@ def keyring_set_password(key, passwd):
             err=True,
             fg="red",
         )
+
+
+def build_uri_with_token(host, port, user, dbname, token):
+    """Compose a postgres:// URI using a token as the password field.
+
+    Token-as-password convention: many cloud Postgres providers
+    (RDS IAM, GCP Cloud SQL, Azure AAD) issue short-lived tokens
+    that we splice into the password slot of a standard URI.
+    """
+    port = port or 5432
+    return f"postgresql://{user}:{token}@{host}:{port}/{dbname}"
